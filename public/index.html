@@ -7,27 +7,92 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 
+    <!--
+      Set the font standart of "Roboto Condensed" with 300 and 700 thickness
+    -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,700,700i"
+      rel="stylesheet"
+    />
+
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
+    <!-- CSS for Nav bar -->
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+
+    <!-- CSS for Nav bar -->
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
+
+    <!-- charactar-counter -->
+    <script
+      type="text/javascript"
+      src="/scripts/composer-char-counter.js"
+    ></script>
+    <!-- icons library -->
+    <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
   </head>
 
   <body>
-
     <!-- Top nav bar (fixed) -->
-    <nav id="nav-bar">
-      <img class="logo" src="/images/bird.png" width="80px" height="80px">
+    <!-- <div id="nav-bar"> -->
+    <nav class="nav-bar">
+      <img class="logo" src="/images/bird.png" />
       <span class="header">Tweeter</span>
+      <button class="compose">
+        <ion-icon name="create"></ion-icon>Compose
+      </button>
     </nav>
+    <!-- </div> -->
 
     <!-- Page-specific (main) content here -->
-    <main class="container">
-    </main>
 
+    <main class="container">
+      <section class="new-tweet">
+        <header><h2>Compose Tweet</h2></header>
+        <form method="POST" action="/tweets">
+          <textarea
+            name="text"
+            placeholder="What are you humming about?"
+          ></textarea>
+          <span class="errShort">Your tweet cannot be empty</span>
+          <span class="errLong"
+            >Your tweet has reached at the max lenght of 140 words</span
+          >
+          <footer>
+            <input type="submit" value="Tweet" />
+            <span class="counter">140</span>
+          </footer>
+        </form>
+      </section>
+
+      <section id="tweets-container">
+        <article class="tweet">
+          <header>
+            <img class="tweet_avatar" src="/images/bird.png" />
+            <span class="tweet_user">Bill</span>
+            <span class="tweet_userHandle">@MrFiels</span>
+          </header>
+          <div class="tweet_body"><p>Little Tweet Here</p></div>
+
+          <footer>
+            <span> 10 days ago</span>
+            <div class="tweet_icon">
+              <ion-icon name="flag"></ion-icon>
+              <ion-icon name="md-repeat"></ion-icon>
+              <ion-icon name="heart"></ion-icon>
+            </div>
+            <!-- need to be reviewed by a mentor! -->
+          </footer>
+        </article>
+      </section>
+    </main>
   </body>
 </html>

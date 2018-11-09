@@ -1,0 +1,116 @@
+.new-tweet {
+  height: 210px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0 1em 0 1em;
+  background-color: #eee;
+  box-shadow: 3px 3px 11px 7px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 10px auto;
+}
+
+.new-tweet h2 {
+  margin: 0;
+  top: 2em;
+  left: 1em;
+  border-bottom: 1px solid #000000;
+  letter-spacing: auto;
+  padding-bottom: 5px;
+}
+
+.new-tweet form textarea {
+  margin-top: 1em;
+  width: 100%;
+  height: 100px;
+  right: auto;
+  color: black;
+}
+/* 
+.new-tweet form .errShort {
+  visibility: hidden;
+}
+
+.new-tweet form .errLong {
+  visibility: hidden;
+} */
+
+.new-tweet form footer {
+  display: flex;
+  justify-content: space-between;
+}
+/* margin between two new tweets */
+#tweets-container .tweet {
+  height: 200px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 3px 3px 11px 7px rgba(0, 0, 0, 0.1);
+  margin: 10px auto 10px auto;
+  opacity: 0.5;
+  transition: 0.3s;
+  z: -1;
+}
+
+#tweets-container .tweet:hover {
+  opacity: 1;
+}
+
+#tweets-container .tweet header {
+  height: 50px;
+  display: flex;
+  background-color: #eee;
+  margin-top: 0;
+  width: 100%;
+}
+
+#tweets-container .tweet header .tweet_avatar {
+  border-radius: 5px;
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+#tweets-container .tweet header .tweet_user {
+  font-size: 150%;
+  padding: 5px 0 0 5px;
+  flex: 1;
+  font-weight: 700;
+}
+
+#tweets-container .tweet header .tweet_userHandle {
+  border-radius: 5px;
+  right: 1em;
+  padding-top: 5px;
+}
+
+#tweets-container .tweet .tweet_body {
+  height: 120px;
+  padding: 5px 0 5px 10px;
+}
+
+#tweets-container .tweet footer {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid darkgrey;
+}
+
+#tweets-container .tweet footer span {
+  padding-left: 5px;
+  height: 100%;
+}
+
+#tweets-container .tweet footer .tweet_icon {
+  height: 100%;
+  padding-top: 5px;
+  padding-right: 5px;
+  justify-content: center;
+  color: green;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+#tweets-container .tweet:hover footer .tweet_icon {
+  opacity: 1;
+}
