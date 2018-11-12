@@ -1,17 +1,15 @@
 /*
-logic flow: 1. fetch the data by {refresh the list}, 
+ logic flow: 1. fetch the data by {refresh the list}, 
               2. append each tweet by {remderTweets};
               3. set each tweet according to the CSS style by {creatTweetElement};
  */
 
-//escape the received content;
 function escape(str) {
   var div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }
 
-//read the create_date
 function createDate(date) {
   const newDate = new Date(parseInt(date, 10));
   const createDate = newDate.toString("MM/dd/yy HH:mm:ss");
@@ -19,13 +17,13 @@ function createDate(date) {
   return tweet_createDate;
 }
 
-//return all the data from database and return to whatever post on html
 const createTweetElement = function(someUser) {
   const tweet_user_avatar = someUser.user.avatars.regular;
   const tweet_user_name = someUser.user.name;
   const tweet_user_handle = someUser.user.handle;
   const tweet_content = escape(someUser.content.text);
   const tweet_createDate = createDate(someUser.created_at);
+
   return $(` 
     <article class="tweet">
       <header>
@@ -48,17 +46,15 @@ const createTweetElement = function(someUser) {
     </article>`);
 };
 
-// append each tweet to the tweets Container,(need to reverse the database)
+// append each tweet to the tweets Container
 const renderTweets = function(tweets) {
-  $("#tweets-container").empty(); // clear all the tweets posted before and reload again.
+  $("#tweets-container").empty();
   tweets.forEach(element => {
     const $tweet = createTweetElement(element);
     $("#tweets-container").prepend($tweet);
   });
 };
 
-//GET all the tweet from the route /tweets
-// the callback function in the ajax GET method helps us to filter out the Json data
 const refreshTweetsList = function() {
   $.get("/tweets", function(data) {
     renderTweets(data);
@@ -66,18 +62,13 @@ const refreshTweetsList = function() {
 };
 
 $(document).ready(function() {
-  refreshTweetsList();
+  refreshTweetsList(); //GET all the tweet in /tweets, but why post?
 
-  //hide the error info till input rightly
   $(".errShort").hide();
   $(".errLong").hide();
 
-  $(".compose").click(function() {
-    $(".new-tweet").slideToggle("fast");
-    $("textarea").focus(); //automatically focus on textarea;
-  });
-
   const $form = $("form");
+
   $form.submit(function(event) {
     event.preventDefault();
 
@@ -98,10 +89,15 @@ $(document).ready(function() {
         url: $url,
         data: $(this).serialize(),
         success: function() {
-          refreshTweetsList(); //POST whatever GET from /tweets
+          refreshTweetsList(); //POST whatever GET from /tweets, thus need to call
           $("form textarea").val("");
         }
       });
     }
+  });
+
+  $(".compose").click(function() {
+    $(".new-tweet").slideToggle("slow");
+    $("textarea").focus(); //automatically focus on textarea;
   });
 });
