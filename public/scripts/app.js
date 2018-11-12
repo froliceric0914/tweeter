@@ -7,6 +7,8 @@
               3. set each tweet according to the CSS style by {creatTweetElement};
  */
 
+// const helperFun = require("./helperFun.js");
+
 //escape the received content;
 function escape(str) {
   var div = document.createElement("div");
@@ -14,6 +16,7 @@ function escape(str) {
   return div.innerHTML;
 }
 
+//read the create_date
 function createDate(date) {
   const newDate = new Date(parseInt(date, 10));
   const createDate = newDate.toString("MM/dd/yy HH:mm:ss");
@@ -21,13 +24,13 @@ function createDate(date) {
   return tweet_createDate;
 }
 
+//return all the data from database and return to whatever post on html
 const createTweetElement = function(someUser) {
   const tweet_user_avatar = someUser.user.avatars.regular;
   const tweet_user_name = someUser.user.name;
   const tweet_user_handle = someUser.user.handle;
   const tweet_content = escape(someUser.content.text);
   const tweet_createDate = createDate(someUser.created_at);
-
   return $(` 
     <article class="tweet">
       <header>
@@ -51,7 +54,6 @@ const createTweetElement = function(someUser) {
 };
 
 // append each tweet to the tweets Container,(need to reverse the database)
-// let reversed_tweets = tweets.reverse();
 const renderTweets = function(tweets) {
   $("#tweets-container").empty(); // clear all the tweets posted before and reload again.
   tweets.forEach(element => {
@@ -62,7 +64,6 @@ const renderTweets = function(tweets) {
 
 //GET all the tweet from the route /tweets
 // the callback function in the ajax GET method helps us to filter out the Json data
-// const reverseData = reverseDatabase(data); we could put the newest data on the top
 const refreshTweetsList = function() {
   $.get("/tweets", function(data) {
     renderTweets(data);
@@ -70,17 +71,18 @@ const refreshTweetsList = function() {
 };
 
 $(document).ready(function() {
-  refreshTweetsList(); //GET all the tweet in /tweets, but why post?
+  refreshTweetsList();
 
+  //hide the error info till input rightly
   $(".errShort").hide();
   $(".errLong").hide();
+
   $(".compose").click(function() {
     $(".new-tweet").slideToggle("fast");
     $("textarea").focus(); //automatically focus on textarea;
   });
 
   const $form = $("form");
-
   $form.submit(function(event) {
     event.preventDefault();
 
@@ -101,7 +103,7 @@ $(document).ready(function() {
         url: $url,
         data: $(this).serialize(),
         success: function() {
-          refreshTweetsList(); //POST whatever GET from /tweets, thus need to call
+          refreshTweetsList(); //POST whatever GET from /tweets
           $("form textarea").val("");
         }
       });
