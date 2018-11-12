@@ -1,7 +1,5 @@
 "use strict";
 
-// Basic express setup:
-
 const { MongoClient } = require("mongodb");
 const MONGODB_URI = "mongodb://localhost:27017/tweeter";
 
@@ -21,16 +19,9 @@ MongoClient.connect(
       throw err;
     }
 
-    // The `data-helpers` module provides an interface to the database of tweets.
-    // This simple interface layer has a big benefit: we could switch out the
-    // actual database it uses and see little to no changes elsewhere in the code.
-    //
-    // Because it exports a function that expects the `db` as a parameter, we can
-    // require it and pass the `db` parameter immediately:
     const DataHelpers = require("./lib/data-helpers.js")(db);
 
-    // The `tweets-routes` module works similarly: we pass it the `DataHelpers` object
-    // so it can define routes that use it to interact with the data layer.
+    // pass it the `DataHelpers` object so it can define routes that use it to interact with the data layer.
     const tweetsRoutes = require("./routes/tweets")(DataHelpers);
 
     // Mount the tweets routes at the "/tweets" path prefix:

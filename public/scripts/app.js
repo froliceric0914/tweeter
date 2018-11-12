@@ -1,13 +1,8 @@
 /*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- logic flow: 1. fetch the data by {refresh the list}, 
+logic flow: 1. fetch the data by {refresh the list}, 
               2. append each tweet by {remderTweets};
               3. set each tweet according to the CSS style by {creatTweetElement};
  */
-
-// const helperFun = require("./helperFun.js");
 
 //escape the received content;
 function escape(str) {
