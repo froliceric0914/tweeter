@@ -2,27 +2,32 @@
  * Client-side JS logic goes here
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
+ logic flow: 1. fetch the data by {refresh the list}, 
+              2. append each tweet by {remderTweets};
+              3. set each tweet according to the CSS style by {creatTweetElement};
  */
 
-// $( "button" ).click(function() {
-//   $( "p" ).slideToggle( "slow" );
-// });
-
+//escape the received content;
 function escape(str) {
   var div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }
 
-//ajust the tweet according to the CSS style
+function createDate(date) {
+  const newDate = new Date(parseInt(date, 10));
+  const createDate = newDate.toString("MM/dd/yy HH:mm:ss");
+  const tweet_createDate = createDate.slice(4, 25);
+  return tweet_createDate;
+}
+
 const createTweetElement = function(someUser) {
-  //someUser should be an Object
   const tweet_user_avatar = someUser.user.avatars.regular;
   const tweet_user_name = someUser.user.name;
   const tweet_user_handle = someUser.user.handle;
-  const tweet_content = escape(someUser.content.text); //escape the received content;
-  const tweet_createDate = someUser.created_at;
-  //reture to the class of tweet, instead of the whole scrtion of #tweets-container;
+  const tweet_content = escape(someUser.content.text);
+  const tweet_createDate = createDate(someUser.created_at);
+
   return $(` 
     <article class="tweet">
       <header>
@@ -35,7 +40,7 @@ const createTweetElement = function(someUser) {
       </div>
 
       <footer>
-        <span>${tweet_createDate}</span>
+        <span>Created at ${tweet_createDate}</span>
         <div class="tweet_icon">
           <ion-icon name="flag"></ion-icon>
           <ion-icon name="md-repeat"></ion-icon>
@@ -63,11 +68,6 @@ const refreshTweetsList = function() {
     renderTweets(data);
   });
 };
-
-/* logic flow: 1. fetch the data by {refresh the list}, 
-              2. append each tweet by {remderTweets};
-              3. set each tweet according to the CSS style by {creatTweetElement};
-*/
 
 $(document).ready(function() {
   refreshTweetsList(); //GET all the tweet in /tweets, but why post?

@@ -12,9 +12,6 @@ html {
   box-sizing: inherit;
 }
 
-/*
- */
-
 body {
   font-family: "Roboto Condensed", sans-serif;
   margin: 0;
@@ -36,6 +33,7 @@ main.container {
   height: 100%;
   width: 450px;
   padding: 10px 0 10px 0;
+  margin-top: 80px;
 }
 
 .counter.invalid {

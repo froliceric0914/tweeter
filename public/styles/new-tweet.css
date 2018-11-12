@@ -25,23 +25,20 @@
   right: auto;
   color: black;
 }
-/* 
-.new-tweet form .errShort {
-  visibility: hidden;
-}
-
-.new-tweet form .errLong {
-  visibility: hidden;
-} */
 
 .new-tweet form footer {
   display: flex;
   justify-content: space-between;
 }
-/* margin between two new tweets */
+
+#error_info {
+  color: red;
+}
+
 #tweets-container .tweet {
   height: 200px;
   width: 400px;
+  margin-top: 120px;
   border: 1px solid black;
   border-radius: 5px;
   background-color: white;
@@ -49,7 +46,6 @@
   margin: 10px auto 10px auto;
   opacity: 0.5;
   transition: 0.3s;
-  z: -1;
 }
 
 #tweets-container .tweet:hover {
@@ -57,6 +53,7 @@
 }
 
 #tweets-container .tweet header {
+  /* border: 1px solid black; */
   height: 50px;
   display: flex;
   background-color: #eee;
@@ -65,15 +62,15 @@
 }
 
 #tweets-container .tweet header .tweet_avatar {
-  border-radius: 5px;
-  border-radius: 10px;
+  border-top-left-radius: 5px;
   width: 50px;
   height: 50px;
+  /* margin-left: 30px; */
 }
 
 #tweets-container .tweet header .tweet_user {
   font-size: 150%;
-  padding: 5px 0 0 5px;
+  padding: 10px 0 0 5px;
   flex: 1;
   font-weight: 700;
 }
@@ -81,7 +78,7 @@
 #tweets-container .tweet header .tweet_userHandle {
   border-radius: 5px;
   right: 1em;
-  padding-top: 5px;
+  padding: 10px 10px 0 5px;
 }
 
 #tweets-container .tweet .tweet_body {
@@ -90,6 +87,8 @@
 }
 
 #tweets-container .tweet footer {
+  padding-top: 5px;
+  font-size: 80%;
   height: 30px;
   display: flex;
   justify-content: space-between;
